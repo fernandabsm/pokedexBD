@@ -7,6 +7,8 @@ package br.com.pokedex.dao;
 
 import br.com.pokedex.jdbc.ConnectionFactory;
 import br.com.pokedex.model.Treinador;
+import br.com.pokedex.view.LoginForm;
+import br.com.pokedex.view.MenuForm;
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.Connection;
@@ -152,17 +154,17 @@ public class TreinadorDAO {
             return null;
         }
     }
-    
+
     //Metodo para buscar treinadores por nome
     public List<Treinador> buscar_treinador_Nome(String nome) {
         try {
             List<Treinador> treinadorList = new ArrayList<>();
 
             String sql = "select * from tb_treinadores where nome like ?";
-            
+
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nome);
-            
+
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -195,5 +197,39 @@ public class TreinadorDAO {
             return null;
         }
     }
-    
+
+    public void efetuar_login(String email, String senha) {
+        try {
+            String sql = "select * from tb_treinadores where email=? and senha=?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, senha);
+
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                //Caso Lider
+                if (rs.getString("nivel_acesso").equals("Líder")) {
+                    JOptionPane.showMessageDialog(null, "Login efetuado!");
+                    MenuForm menu = new MenuForm();
+                    menu.setVisible(true);
+                }
+                //Caso Integrante
+                else if(rs.getString("nivel_acesso").equals("Integrante")){
+                    JOptionPane.showMessageDialog(null, "Login efetuado!");
+                    MenuForm menu = new MenuForm();
+                    menu.MenuTreinadores.setVisible(false);
+                    menu.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "O login falhou! Dados incorretos.");
+                new LoginForm().setVisible(true);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro -> " + e);
+            new LoginForm().setVisible(true);
+        }
+    }
+
 }

@@ -5,7 +5,6 @@
  */
 package br.com.pokedex.view;
 
-import br.com.pokedex.dao.PokemonDAO;
 import br.com.pokedex.dao.TreinadorDAO;
 import br.com.pokedex.model.PokedexUtil;
 import br.com.pokedex.model.Treinador;
@@ -116,7 +115,7 @@ public class TreinadorForm extends javax.swing.JFrame {
         buttonEdit = new javax.swing.JButton();
         buttorDelete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -722,7 +721,8 @@ public class TreinadorForm extends javax.swing.JFrame {
 
     private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
         //Botao novo
-        new PokedexUtil().limpa_dados(abaCadastro);
+        new PokedexUtil().limpa_dados(this.abaCadastro);
+        telaTreinadores.setSelectedIndex(0);
     }//GEN-LAST:event_buttonNewActionPerformed
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed

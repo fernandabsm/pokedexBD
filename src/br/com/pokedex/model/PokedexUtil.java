@@ -6,6 +6,7 @@
 package br.com.pokedex.model;
 
 import java.awt.Component;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,6 +22,9 @@ public class PokedexUtil {
         for (Component component : components) {
             if (component instanceof JTextField) {
                 ((JTextField) component).setText(null);
+            }
+            if (component instanceof JCheckBox){
+                ((JCheckBox) component).setSelected(false);
             }
         }
     }
