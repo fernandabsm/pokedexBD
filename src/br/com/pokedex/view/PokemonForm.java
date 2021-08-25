@@ -405,7 +405,7 @@ public class PokemonForm extends javax.swing.JFrame {
         });
 
         buttonSave.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        buttonSave.setText("Salvar");
+        buttonSave.setText("Criar");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSaveActionPerformed(evt);
@@ -413,7 +413,7 @@ public class PokemonForm extends javax.swing.JFrame {
         });
 
         buttonEdit.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        buttonEdit.setText("Editar");
+        buttonEdit.setText("Salvar");
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
