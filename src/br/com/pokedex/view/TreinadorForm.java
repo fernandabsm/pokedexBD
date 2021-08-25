@@ -68,7 +68,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaTreinadores.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaFundoTreinadores.png"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){

@@ -61,7 +61,7 @@ public class PokemonForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaPokemons.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaFundoPokemons.png"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -99,7 +99,6 @@ public class PokemonForm extends javax.swing.JFrame {
         buttorDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 768));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -462,12 +461,12 @@ public class PokemonForm extends javax.swing.JFrame {
                 .addGap(168, 168, 168)
                 .addComponent(telaPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonNew)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonSave)
                         .addComponent(buttonEdit)
-                        .addComponent(buttorDelete)))
+                        .addComponent(buttorDelete))
+                    .addComponent(buttonNew))
                 .addGap(61, 61, 61))
         );
 
