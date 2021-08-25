@@ -8,7 +8,10 @@ package br.com.pokedex.view;
 import br.com.pokedex.dao.TreinadorDAO;
 import br.com.pokedex.model.PokedexUtil;
 import br.com.pokedex.model.Treinador;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -65,8 +68,13 @@ public class TreinadorForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaTreinadores.png"));
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image, 0, 0, 1080, 768, this);
+            }
+        };
         telaTreinadores = new javax.swing.JTabbedPane();
         abaCadastro = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -116,38 +124,19 @@ public class TreinadorForm extends javax.swing.JFrame {
         buttorDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1080, 768));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
-
-        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Treinadores");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(17, 17, 17))
-        );
+        telaTreinadores.setFont(new java.awt.Font("NATS", 0, 16));
 
         abaCadastro.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome:");
 
@@ -167,11 +156,11 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("E-mail:");
 
-        jLabel5.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Celular:");
 
@@ -183,7 +172,7 @@ public class TreinadorForm extends javax.swing.JFrame {
         }
         txtCelular.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("CEP:");
 
@@ -194,8 +183,13 @@ public class TreinadorForm extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCep.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Endereço:");
 
@@ -215,11 +209,11 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Nº:");
 
-        jLabel9.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Bairro:");
 
@@ -239,7 +233,7 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Cidade:");
 
@@ -251,15 +245,15 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Complemento:");
 
-        jLabel12.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("UF:");
 
-        jLabel13.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("CPF:");
 
@@ -271,7 +265,7 @@ public class TreinadorForm extends javax.swing.JFrame {
         }
         txtCpf.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Data de ingresso:");
 
@@ -288,15 +282,15 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        boxUf.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        boxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MG" }));
+        boxUf.setFont(new java.awt.Font("NATS", 0, 18));
+        boxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         boxUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxUfActionPerformed(evt);
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Senha:");
 
@@ -304,14 +298,19 @@ public class TreinadorForm extends javax.swing.JFrame {
         txtSenha.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         txtSenha.setToolTipText("");
 
-        boxNivelAcesso.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        boxNivelAcesso.setFont(new java.awt.Font("NATS", 0, 18));
         boxNivelAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integrante", "Líder" }));
+        boxNivelAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxNivelAcessoActionPerformed(evt);
+            }
+        });
 
-        jLabel16.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Nível de acesso:");
 
-        jLabel17.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Pokémons capturados:");
 
@@ -323,7 +322,7 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Batalhas vencidas:");
 
@@ -335,7 +334,7 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("NATS", 0, 18));
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Batalhas perdidas:");
 
@@ -348,9 +347,14 @@ public class TreinadorForm extends javax.swing.JFrame {
         });
 
         checkEmBatalha.setBackground(new java.awt.Color(255, 255, 255));
-        checkEmBatalha.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        checkEmBatalha.setFont(new java.awt.Font("NATS", 0, 18));
         checkEmBatalha.setForeground(new java.awt.Color(0, 0, 0));
         checkEmBatalha.setText("Treinador em batalha");
+        checkEmBatalha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkEmBatalhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout abaCadastroLayout = new javax.swing.GroupLayout(abaCadastro);
         abaCadastro.setLayout(abaCadastroLayout);
@@ -359,61 +363,6 @@ public class TreinadorForm extends javax.swing.JFrame {
             .addGroup(abaCadastroLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxUf, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                                    .addComponent(txtEmail))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtSenha)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(abaCadastroLayout.createSequentialGroup()
                         .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(abaCadastroLayout.createSequentialGroup()
@@ -438,8 +387,66 @@ public class TreinadorForm extends javax.swing.JFrame {
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBatalhasPerdidas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(checkEmBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 346, Short.MAX_VALUE))))
+                            .addComponent(checkEmBatalha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 345, Short.MAX_VALUE))
+                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(abaCadastroLayout.createSequentialGroup()
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10))
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boxUf, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(abaCadastroLayout.createSequentialGroup()
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(73, 73, 73)
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(abaCadastroLayout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         abaCadastroLayout.setVerticalGroup(
             abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,16 +496,15 @@ public class TreinadorForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(boxNivelAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel16)))
                     .addGroup(abaCadastroLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
-                            .addComponent(txtBatalhasPerdidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(checkEmBatalha)
-                        .addGap(16, 16, 16))))
+                            .addComponent(txtBatalhasPerdidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(checkEmBatalha)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         telaTreinadores.addTab("Dados cadastrais", abaCadastro);
@@ -550,17 +556,16 @@ public class TreinadorForm extends javax.swing.JFrame {
         abaPesquisaLayout.setHorizontalGroup(
             abaPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaPesquisaLayout.createSequentialGroup()
-                .addGroup(abaPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(abaPesquisaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 787, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(768, Short.MAX_VALUE))
+            .addGroup(abaPesquisaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         abaPesquisaLayout.setVerticalGroup(
             abaPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,10 +576,10 @@ public class TreinadorForm extends javax.swing.JFrame {
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
         );
 
-        telaTreinadores.addTab("Pesquisar treinadores", abaPesquisa);
+        telaTreinadores.addTab("Pesquisar", abaPesquisa);
 
         buttonNew.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         buttonNew.setText("Novo");
@@ -608,14 +613,18 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(telaTreinadores)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(328, 328, 328)
+        jDesktopPane1.setLayer(telaTreinadores, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(buttonNew, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(buttonSave, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(buttonEdit, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(buttorDelete, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(322, 322, 322)
                 .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -624,30 +633,50 @@ public class TreinadorForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttorDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(telaTreinadores)
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
 
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(telaTreinadores, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(telaTreinadores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonSave)
                         .addComponent(buttonEdit)
                         .addComponent(buttorDelete))
                     .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(115, 115, 115))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // Carrega a lista
+        listar_treinador();
+    }//GEN-LAST:event_formWindowActivated
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
@@ -681,19 +710,36 @@ public class TreinadorForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataIngressoActionPerformed
 
+    private void boxUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxUfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxUfActionPerformed
+
+    private void txtPokemonsCapturadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPokemonsCapturadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPokemonsCapturadosActionPerformed
+
+    private void txtBatalhasVencidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasVencidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBatalhasVencidasActionPerformed
+
+    private void txtBatalhasPerdidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasPerdidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBatalhasPerdidasActionPerformed
+
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
-    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        //Pesquisa ao digitar
         //Pesquisar treinador por nome
         String nome = "%" + txtPesquisa.getText() + "%";
-        
+
         TreinadorDAO dao = new TreinadorDAO();
         List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
         DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
         dados.setNumRows(0);
-        
+
         for(Treinador t : treinadorList){
             dados.addRow(new Object[]{
                 t.getNome(),
@@ -716,8 +762,66 @@ public class TreinadorForm extends javax.swing.JFrame {
                 t.isStatusBatalha()
             });
         }
-        
+    }//GEN-LAST:event_txtPesquisaKeyPressed
+
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        //Pesquisar treinador por nome
+        String nome = "%" + txtPesquisa.getText() + "%";
+
+        TreinadorDAO dao = new TreinadorDAO();
+        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        dados.setNumRows(0);
+
+        for(Treinador t : treinadorList){
+            dados.addRow(new Object[]{
+                t.getNome(),
+                t.getCpf(),
+                t.getEmail(),
+                t.getSenha(),
+                t.getNivelAcesso(),
+                t.getCelular(),
+                t.getCEP(),
+                t.getEndereco(),
+                t.getNumero(),
+                t.getComplemento(),
+                t.getBairro(),
+                t.getCidade(),
+                t.getUf(),
+                t.getDataIngresso(),
+                t.getPokemonsCapturados(),
+                t.getBatalhasPerdidas(),
+                t.getBatalhasVencidas(),
+                t.isStatusBatalha()
+            });
+        }
     }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void tabelaTreinadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTreinadorMouseClicked
+        // muda da aba de tabela de pesquisa para a aba de cadastro
+        telaTreinadores.setSelectedIndex(0);
+        txtNome.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 0).toString());
+        txtCpf.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 1).toString());
+        txtEmail.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 2).toString());
+        txtSenha.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 3).toString());
+        boxNivelAcesso.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 4).toString());
+        txtCelular.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 5).toString());
+        txtCep.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 6).toString());
+        txtEndereco.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 7).toString());
+        txtNumero.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 8).toString());
+        txtComplemento.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 9).toString());
+        txtBairro.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 10).toString());
+        txtCidade.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 11).toString());
+        boxUf.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 12).toString());
+        txtDataIngresso.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 13).toString());
+        txtPokemonsCapturados.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 14).toString());
+        txtBatalhasPerdidas.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 15).toString());
+        txtBatalhasVencidas.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 16).toString());
+        if(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 17).toString() == "true")
+        checkEmBatalha.setSelected(true);
+        else
+        checkEmBatalha.setSelected(false);
+    }//GEN-LAST:event_tabelaTreinadorMouseClicked
 
     private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
         //Botao novo
@@ -748,55 +852,7 @@ public class TreinadorForm extends javax.swing.JFrame {
         dao.cadastrar_treinador(treinador);
 
         new PokedexUtil().limpa_dados(abaCadastro);
-
     }//GEN-LAST:event_buttonSaveActionPerformed
-
-    private void boxUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxUfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxUfActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // Carrega a lista
-        listar_treinador();
-    }//GEN-LAST:event_formWindowActivated
-
-    private void tabelaTreinadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTreinadorMouseClicked
-        // muda da aba de tabela de pesquisa para a aba de cadastro
-        telaTreinadores.setSelectedIndex(0);
-        txtNome.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 0).toString());
-        txtCpf.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 1).toString());
-        txtEmail.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 2).toString());
-        txtSenha.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 3).toString());
-        boxNivelAcesso.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 4).toString());
-        txtCelular.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 5).toString());
-        txtCep.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 6).toString());
-        txtEndereco.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 7).toString());
-        txtNumero.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 8).toString());
-        txtComplemento.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 9).toString());
-        txtBairro.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 10).toString());
-        txtCidade.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 11).toString());
-        boxUf.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 12).toString());
-        txtDataIngresso.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 13).toString());
-        txtPokemonsCapturados.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 14).toString());
-        txtBatalhasPerdidas.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 15).toString());
-        txtBatalhasVencidas.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 16).toString());
-        if(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 17).toString() == "true")
-            checkEmBatalha.setSelected(true);
-        else
-            checkEmBatalha.setSelected(false);
-    }//GEN-LAST:event_tabelaTreinadorMouseClicked
-
-    private void txtPokemonsCapturadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPokemonsCapturadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPokemonsCapturadosActionPerformed
-
-    private void txtBatalhasVencidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasVencidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBatalhasVencidasActionPerformed
-
-    private void txtBatalhasPerdidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasPerdidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBatalhasPerdidasActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
         //botao de editar
@@ -823,9 +879,8 @@ public class TreinadorForm extends javax.swing.JFrame {
 
         TreinadorDAO dao = new TreinadorDAO();
         dao.alterar_treinador(treinador);
-        
-        new PokedexUtil().limpa_dados(abaCadastro);
 
+        new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void buttorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttorDeleteActionPerformed
@@ -836,43 +891,21 @@ public class TreinadorForm extends javax.swing.JFrame {
 
         TreinadorDAO dao = new TreinadorDAO();
         dao.excluir_treinador(treinador);
-        
+
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttorDeleteActionPerformed
 
-    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
-        //Pesquisa ao digitar
-        //Pesquisar treinador por nome
-        String nome = "%" + txtPesquisa.getText() + "%";
-        
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
-        dados.setNumRows(0);
-        
-        for(Treinador t : treinadorList){
-            dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEmail(),
-                t.getSenha(),
-                t.getNivelAcesso(),
-                t.getCelular(),
-                t.getCEP(),
-                t.getEndereco(),
-                t.getNumero(),
-                t.getComplemento(),
-                t.getBairro(),
-                t.getCidade(),
-                t.getUf(),
-                t.getDataIngresso(),
-                t.getPokemonsCapturados(),
-                t.getBatalhasPerdidas(),
-                t.getBatalhasVencidas(),
-                t.isStatusBatalha()
-            });
-        }
-    }//GEN-LAST:event_txtPesquisaKeyPressed
+    private void checkEmBatalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkEmBatalhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkEmBatalhaActionPerformed
+
+    private void boxNivelAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNivelAcessoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxNivelAcessoActionPerformed
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,7 +953,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttorDelete;
     private javax.swing.JCheckBox checkEmBatalha;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -939,7 +972,6 @@ public class TreinadorForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaTreinador;
     private javax.swing.JTabbedPane telaTreinadores;

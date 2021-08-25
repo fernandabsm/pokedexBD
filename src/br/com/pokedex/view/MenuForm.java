@@ -5,6 +5,9 @@
  */
 package br.com.pokedex.view;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +32,13 @@ public class MenuForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaMenuNova.png"));
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image, 0, 0, 720, 512, this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuPokemons = new javax.swing.JMenu();
         MenuAcessoPokemons = new javax.swing.JMenuItem();
@@ -39,9 +49,28 @@ public class MenuForm extends javax.swing.JFrame {
         MenuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(730, 594));
+        setResizable(false);
 
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 512, Short.MAX_VALUE)
+        );
+
+        jMenuBar1.setForeground(new java.awt.Color(196, 196, 196));
+        jMenuBar1.setAutoscrolls(true);
+
+        MenuPokemons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pikachuAjustado.png"))); // NOI18N
         MenuPokemons.setText("Pokémons");
+        MenuPokemons.setFont(new java.awt.Font("NATS", 0, 18));
 
+        MenuAcessoPokemons.setFont(new java.awt.Font("NATS", 0, 16));
         MenuAcessoPokemons.setText("Acesso aos Pokémons");
         MenuAcessoPokemons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,8 +81,11 @@ public class MenuForm extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuPokemons);
 
+        MenuTreinadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/treinadorAjustado.png"))); // NOI18N
         MenuTreinadores.setText("Treinadores");
+        MenuTreinadores.setFont(new java.awt.Font("NATS", 0, 18));
 
+        MenuAcessoTreinadores.setFont(new java.awt.Font("NATS", 0, 16));
         MenuAcessoTreinadores.setText("Acesso aos Treinadores");
         MenuAcessoTreinadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,8 +96,11 @@ public class MenuForm extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuTreinadores);
 
+        MenuMudarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configuracaoAjustado.png"))); // NOI18N
         MenuMudarUsuario.setText("Configurações");
+        MenuMudarUsuario.setFont(new java.awt.Font("NATS", 0, 18));
 
+        MenuTrocarUsuario.setFont(new java.awt.Font("NATS", 0, 16));
         MenuTrocarUsuario.setText("Trocar de Usuário");
         MenuTrocarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +111,9 @@ public class MenuForm extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuMudarUsuario);
 
+        MenuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sairAjustado.png"))); // NOI18N
         MenuSair.setText("Sair");
+        MenuSair.setFont(new java.awt.Font("NATS", 0, 18));
         MenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuSairMouseClicked(evt);
@@ -90,14 +127,19 @@ public class MenuForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuTrocarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTrocarUsuarioActionPerformed
@@ -171,6 +213,7 @@ public class MenuForm extends javax.swing.JFrame {
     private javax.swing.JMenu MenuSair;
     public javax.swing.JMenu MenuTreinadores;
     private javax.swing.JMenuItem MenuTrocarUsuario;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,6 @@ package br.com.pokedex.dao;
 
 import br.com.pokedex.jdbc.ConnectionFactory;
 import br.com.pokedex.model.Pokemon;
-import br.com.pokedex.model.Treinador;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
