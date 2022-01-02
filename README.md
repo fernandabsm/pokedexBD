@@ -57,8 +57,8 @@ Pacote que recebe os objetos criados e encapsulados no pacote model e interage c
 - PokemonDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Pokémons, interagindo com a tabela pokemon do BD.
 - TreinadorDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Treinadores, interagindo com a tabela treinador do BD.
 - GinasioDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Ginásios, interagindo com a tabela ginasio do BD.
-- BatalhaDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso das Batalhas, interagindo com a tabela batalha do BD.
-- LoginDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso do Login, interagindo com a tabela batalha do BD.<br> <br>
+- BatalhaDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso das Batalhas, interagindo com a tabela treinador_batalha_ginasio do BD.
+- LoginDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso do Login, interagindo com a tabela login do BD.<br> <br>
 
 📁 br.com.pokedex.jdbc <br> <br>
 Pacote responsável por criar a conexão entre a IDE e o MySQL através da classe ConnectionFactory.<br> <br>
