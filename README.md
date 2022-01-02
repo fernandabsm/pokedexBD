@@ -71,7 +71,7 @@ Este pacote é um pacote extra dos demais e não segue o mesmo padrão pois sua 
 
 ✔️ Inclua a biblioteca <a target="_blank" href="https://drive.google.com/file/d/1GaijUqzwA_Fv-UFC8bQqwCM9roym7yV4/view?usp=sharing">mysql-connector-java-8.0.25</a> à sua IDE para poder conectá-la ao BD. <br>
 ✔️ Caso não possua, instale o <a target="_blank" href="https://dev.mysql.com/downloads/connector/j/">MySQL</a>. <br>
-✔️ Execute o script <a target="_blank" href="https://github.com/fernandabsm/pokedexScript/blob/main/PokedexScript.sql">PokedexScript</a>. <br>
+✔️ Execute o script <a target="_blank" href="https://github.com/fernandabsm/pokedexScriptSQL">PokedexScript</a>. <br>
 ✔️ Instale a fonte <a target="_blank" href="https://pt.ffonts.net/NATS.font.download">NATS</a> no seu SO. <br>
 ✔️ Clone este repositório na sua máquina. <br>
 ✔️ Crie um primeiro usuário com acesso "Líder" executando a classe <b>TreinadorForm</b>.<br>
