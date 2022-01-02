@@ -15,8 +15,8 @@ Contém as classes que são responsáveis pela interação com o usuário. São 
 + CadastroForm -> É a tela de cadastro. Recebe como dados o e-mail, senha e CPF de um treinador. Essa tela é exibida caso deseje-se cadastrar um novo login para um treinador.
 + MenuForm -> Caso o login seja efetuado com sucesso, essa é a tela seguinte. Para o usuário com nível de acesso "Integrante", possui os menus: Pokémons - submenu: Acesso aos Pokémons, Configurações - submenu: Trocar de Usuário, e Sair. Para o nível de acesso "Líder", além destes, também possui o menu Treinadores com submenu Acesso aos Treinadores.  
 + PokemonForm -> Tela de acesso aos pokémons. Essa tela contém as abas "Dados Cadastrais" e "Pesquisar". Nela, um treinador é capaz de adicionar um novo Pokémon ao banco de dados, acessar a lista de Pokémons, pesquisar por um Pokémon específico, atualizar os dados de um Pokémon e excluir.
-+ TreinadorForm -> Tela de acesso aos treinadores. Apenas os líderes tem acesso. Contém as mesmas abas e funcionalidades da tela de Pokémons, porém para os treinadores.<br><br>
-+ GinasioForm -> Tela de acesso aos ginásios. Contém as mesmas abas e funcionalidades da tela de Pokémons e Treinadores.<br><br>
++ TreinadorForm -> Tela de acesso aos treinadores. Apenas os líderes tem acesso. Contém as mesmas abas e funcionalidades da tela de Pokémons, porém para os treinadores.
++ GinasioForm -> Tela de acesso aos ginásios. Contém as mesmas abas e funcionalidades da tela de Pokémons e Treinadores.
 + BatalhaForm -> Tela de acesso às batalhas. Contém as mesmas abas e funcionalidades das demais telas, exceto a possibilidade de exclusão.<br><br>
 
 📁 br.com.pokedex.model <br> <br>
