@@ -44,7 +44,7 @@ Pacote que contém os objetos do sistema. Os dados que são recebidos através d
 ◻️ tipo<br>
 </ul></li>
 
-<ul><li> Treinador -> Objeto que representa uma Batalha. Possui os atributos:<br>
+<ul><li> Batalha -> Objeto que representa uma Batalha. Possui os atributos:<br>
 ◻️ enderecoGinasio<br>
 ◻️ cpfTreinador<br>
 ◻️ adversario<br>
