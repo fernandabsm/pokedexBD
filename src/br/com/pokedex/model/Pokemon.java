@@ -10,92 +10,74 @@ public class Pokemon {
     private String nome;
     private String tipo;
     private String dataCaptura;
-    private Boolean statusBatalha;
+    private String localCaptura;
     private int pontosCombate;
-    private Boolean possuiEvolucao;
-    private Boolean podeEvoluir;
-    private int batalhasPerdidas;
-    private int batalhasVencidas;
+    private String evolucao;
     private int id;
+    private String cpfTreinador;
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getDataCaptura() {
         return dataCaptura;
     }
 
-    public void setDataCaptura(String dataCaptura) {
-        this.dataCaptura = dataCaptura;
-    }
-
-    public Boolean getStatusBatalha() {
-        return statusBatalha;
-    }
-
-    public void setStatusBatalha(Boolean statusBatalha) {
-        this.statusBatalha = statusBatalha;
+    public String getLocalCaptura() {
+        return localCaptura;
     }
 
     public int getPontosCombate() {
         return pontosCombate;
     }
 
-    public void setPontosCombate(int pontosCombate) {
-        this.pontosCombate = pontosCombate;
-    }
-
-    public Boolean getPossuiEvolucao() {
-        return possuiEvolucao;
-    }
-
-    public void setPossuiEvolucao(Boolean possuiEvolucao) {
-        this.possuiEvolucao = possuiEvolucao;
-    }
-
-    public Boolean getPodeEvoluir() {
-        return podeEvoluir;
-    }
-
-    public void setPodeEvoluir(Boolean podeEvoluir) {
-        this.podeEvoluir = podeEvoluir;
-    }
-
-    public int getBatalhasPerdidas() {
-        return batalhasPerdidas;
-    }
-
-    public void setBatalhasPerdidas(int batalhasPerdidas) {
-        this.batalhasPerdidas = batalhasPerdidas;
-    }
-
-    public int getBatalhasVencidas() {
-        return batalhasVencidas;
-    }
-
-    public void setBatalhasVencidas(int batalhasVencidas) {
-        this.batalhasVencidas = batalhasVencidas;
+    public String getEvolucao() {
+        return evolucao;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getCpfTreinador() {
+        return cpfTreinador;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setDataCaptura(String dataCaptura) {
+        this.dataCaptura = dataCaptura;
+    }
+
+    public void setLocalCaptura(String localCaptura) {
+        this.localCaptura = localCaptura;
+    }
+
+    public void setPontosCombate(int pontosCombate) {
+        this.pontosCombate = pontosCombate;
+    }
+
+    public void setEvolucao(String evolucao) {
+        this.evolucao = evolucao;
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCpfTreinador(String cpfTreinador) {
+        this.cpfTreinador = cpfTreinador;
     }
 
 }

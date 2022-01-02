@@ -8,6 +8,7 @@ package br.com.pokedex.view;
 import br.com.pokedex.dao.PokemonDAO;
 import br.com.pokedex.model.PokedexUtil;
 import br.com.pokedex.model.Pokemon;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
@@ -20,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PokemonForm extends javax.swing.JFrame {
 
-    private int id = 0;
     // Metodo listar na tabela
     public void listar_pokemon(){
         
@@ -35,12 +35,10 @@ public class PokemonForm extends javax.swing.JFrame {
                 p.getNome(),
                 p.getTipo(),
                 p.getPontosCombate(),
+                p.getLocalCaptura(),
                 p.getDataCaptura(),
-                p.getBatalhasVencidas(),
-                p.getBatalhasPerdidas(),
-                p.getPossuiEvolucao(),
-                p.getPodeEvoluir(),
-                p.getStatusBatalha()
+                p.getEvolucao(),
+                p.getCpfTreinador()
             });
         }
     }
@@ -61,11 +59,11 @@ public class PokemonForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/telaFundoPokemons.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/PokemonDir.png"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
-                g.drawImage(image, 0, 0, 1080, 768, this);
+                g.drawImage(image, 0, 0, 900, 550, this);
             }
         };
         telaPokemon = new javax.swing.JTabbedPane();
@@ -78,15 +76,14 @@ public class PokemonForm extends javax.swing.JFrame {
         txtDataCaptura = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         txtPontosCombate = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        txtBatalhasVencidas = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txtBatalhasPerdidas = new javax.swing.JTextField();
-        checkEmBatalha = new javax.swing.JCheckBox();
-        checkPodeEvoluir = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        checkPossuiEvolucao = new javax.swing.JCheckBox();
+        jLabel15 = new javax.swing.JLabel();
+        txtLocalCaptura = new javax.swing.JTextField();
+        txtEvolucao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtCpfTreinador = new javax.swing.JFormattedTextField();
         abaPesquisa = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
@@ -106,17 +103,20 @@ public class PokemonForm extends javax.swing.JFrame {
             }
         });
 
-        telaPokemon.setFont(new java.awt.Font("NATS", 0, 18));
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(900, 550));
+
+        telaPokemon.setFont(new java.awt.Font("NATS", 0, 16));
+        telaPokemon.setPreferredSize(new java.awt.Dimension(900, 350));
 
         abaCadastro.setBackground(new java.awt.Color(255, 255, 255));
-        abaCadastro.setPreferredSize(new java.awt.Dimension(1056, 400));
+        abaCadastro.setPreferredSize(new java.awt.Dimension(900, 350));
 
-        jLabel2.setFont(new java.awt.Font("NATS", 0, 18));
+        jLabel2.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome:");
 
         txtNome.setBackground(new java.awt.Color(255, 255, 255));
-        txtNome.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtNome.setFont(new java.awt.Font("NATS", 0, 16));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -124,18 +124,18 @@ public class PokemonForm extends javax.swing.JFrame {
         });
 
         txtTipo.setBackground(new java.awt.Color(255, 255, 255));
-        txtTipo.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtTipo.setFont(new java.awt.Font("NATS", 0, 16));
         txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTipoActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("NATS", 0, 18));
+        jLabel4.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tipo:");
 
-        jLabel14.setFont(new java.awt.Font("NATS", 0, 18));
+        jLabel14.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Data de captura:");
 
@@ -145,89 +145,76 @@ public class PokemonForm extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtDataCaptura.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtDataCaptura.setFont(new java.awt.Font("NATS", 0, 16));
         txtDataCaptura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataCapturaActionPerformed(evt);
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("NATS", 0, 18));
+        jLabel17.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Pontos de combate:");
 
         txtPontosCombate.setBackground(new java.awt.Color(255, 255, 255));
-        txtPontosCombate.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtPontosCombate.setFont(new java.awt.Font("NATS", 0, 16));
         txtPontosCombate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPontosCombateActionPerformed(evt);
             }
         });
 
-        jLabel18.setFont(new java.awt.Font("NATS", 0, 18));
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Batalhas vencidas:");
-
-        txtBatalhasVencidas.setBackground(new java.awt.Color(255, 255, 255));
-        txtBatalhasVencidas.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        txtBatalhasVencidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBatalhasVencidasActionPerformed(evt);
-            }
-        });
-
-        jLabel19.setFont(new java.awt.Font("NATS", 0, 18));
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Batalhas perdidas:");
-
-        txtBatalhasPerdidas.setBackground(new java.awt.Color(255, 255, 255));
-        txtBatalhasPerdidas.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        txtBatalhasPerdidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBatalhasPerdidasActionPerformed(evt);
-            }
-        });
-
-        checkEmBatalha.setBackground(new java.awt.Color(255, 255, 255));
-        checkEmBatalha.setFont(new java.awt.Font("NATS", 0, 18));
-        checkEmBatalha.setForeground(new java.awt.Color(0, 0, 0));
-        checkEmBatalha.setText("Pokémon em batalha");
-        checkEmBatalha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkEmBatalhaActionPerformed(evt);
-            }
-        });
-
-        checkPodeEvoluir.setBackground(new java.awt.Color(255, 255, 255));
-        checkPodeEvoluir.setFont(new java.awt.Font("NATS", 0, 18));
-        checkPodeEvoluir.setForeground(new java.awt.Color(0, 0, 0));
-        checkPodeEvoluir.setText("Pode evoluir");
-        checkPodeEvoluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkPodeEvoluirActionPerformed(evt);
-            }
-        });
-
-        jLabel20.setFont(new java.awt.Font("NATS", 0, 18));
+        jLabel20.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("ID:");
 
         txtID.setEditable(false);
         txtID.setBackground(new java.awt.Color(255, 255, 255));
-        txtID.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtID.setFont(new java.awt.Font("NATS", 0, 16));
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
             }
         });
 
-        checkPossuiEvolucao.setBackground(new java.awt.Color(255, 255, 255));
-        checkPossuiEvolucao.setFont(new java.awt.Font("NATS", 0, 18));
-        checkPossuiEvolucao.setForeground(new java.awt.Color(0, 0, 0));
-        checkPossuiEvolucao.setText("Possui evolução");
-        checkPossuiEvolucao.addActionListener(new java.awt.event.ActionListener() {
+        jLabel15.setFont(new java.awt.Font("NATS", 0, 16));
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Local de captura:");
+
+        txtLocalCaptura.setBackground(new java.awt.Color(255, 255, 255));
+        txtLocalCaptura.setFont(new java.awt.Font("NATS", 0, 16));
+        txtLocalCaptura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkPossuiEvolucaoActionPerformed(evt);
+                txtLocalCapturaActionPerformed(evt);
+            }
+        });
+
+        txtEvolucao.setBackground(new java.awt.Color(255, 255, 255));
+        txtEvolucao.setFont(new java.awt.Font("NATS", 0, 16));
+        txtEvolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEvolucaoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("NATS", 0, 16));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Evolução:");
+
+        jLabel18.setFont(new java.awt.Font("NATS", 0, 16));
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("CPF Treinador:");
+
+        txtCpfTreinador.setBackground(new java.awt.Color(255, 255, 255));
+        try {
+            txtCpfTreinador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCpfTreinador.setFont(new java.awt.Font("NATS", 0, 16));
+        txtCpfTreinador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfTreinadorActionPerformed(evt);
             }
         });
 
@@ -239,47 +226,46 @@ public class PokemonForm extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPontosCombate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkPodeEvoluir, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkPossuiEvolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkEmBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(135, 135, 135))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(abaCadastroLayout.createSequentialGroup()
-                                    .addComponent(jLabel19)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtBatalhasPerdidas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(abaCadastroLayout.createSequentialGroup()
-                                    .addComponent(jLabel18)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtBatalhasVencidas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNome))
+                                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel14)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDataCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtLocalCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(abaCadastroLayout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCpfTreinador, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(43, 43, 43)
+                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, abaCadastroLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPontosCombate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(abaCadastroLayout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDataCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(abaCadastroLayout.createSequentialGroup()
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtEvolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         abaCadastroLayout.setVerticalGroup(
             abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,53 +273,42 @@ public class PokemonForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(txtPontosCombate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkPossuiEvolucao)
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(checkPodeEvoluir)))))
+                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtPontosCombate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEvolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtLocalCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtDataCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(txtBatalhasVencidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(txtBatalhasPerdidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtDataCaptura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkEmBatalha))
-                .addContainerGap(142, Short.MAX_VALUE))
+                    .addComponent(txtCpfTreinador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         telaPokemon.addTab("Dados cadastrais", abaCadastro);
 
         abaPesquisa.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nome:");
 
         txtPesquisa.setBackground(new java.awt.Color(255, 255, 255));
-        txtPesquisa.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        txtPesquisa.setFont(new java.awt.Font("NATS", 0, 16));
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
@@ -345,20 +320,27 @@ public class PokemonForm extends javax.swing.JFrame {
             }
         });
 
-        buttonSearch.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        buttonSearch.setBackground(new java.awt.Color(153, 153, 153));
+        buttonSearch.setFont(new java.awt.Font("NATS", 0, 16));
+        buttonSearch.setForeground(new java.awt.Color(0, 0, 0));
         buttonSearch.setText("Pesquisar");
+        buttonSearch.setBorderPainted(false);
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSearchActionPerformed(evt);
             }
         });
 
+        tabelaPokemon.setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaPokemon.getTableHeader().setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaPokemon.getTableHeader().setPreferredSize(new Dimension(50, 30));
+        tabelaPokemon.getTableHeader().setBackground(new java.awt.Color(60,63,65));
         tabelaPokemon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome", "Tipo", "Pontos de combate", "Data de captura", "Batalhas vencidas", "Batalhas perdidas", "Possui evolução", "Pode evoluir", "Em batalha"
+                "ID", "Nome", "Tipo", "PC", "Local de captura", "Data de captura", "Evolução", "Treinador"
             }
         ));
         tabelaPokemon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -379,49 +361,63 @@ public class PokemonForm extends javax.swing.JFrame {
                 .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(573, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addContainerGap(395, Short.MAX_VALUE))
+            .addGroup(abaPesquisaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         abaPesquisaLayout.setVerticalGroup(
             abaPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaPesquisaLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addGroup(abaPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSearch))
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
         );
 
         telaPokemon.addTab("Pesquisar", abaPesquisa);
 
-        buttonNew.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        buttonNew.setBackground(new java.awt.Color(153, 153, 153));
+        buttonNew.setFont(new java.awt.Font("NATS", 0, 16));
+        buttonNew.setForeground(new java.awt.Color(0, 0, 0));
         buttonNew.setText("Novo");
+        buttonNew.setBorderPainted(false);
         buttonNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonNewActionPerformed(evt);
             }
         });
 
-        buttonSave.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        buttonSave.setBackground(new java.awt.Color(153, 153, 153));
+        buttonSave.setFont(new java.awt.Font("NATS", 0, 16));
+        buttonSave.setForeground(new java.awt.Color(0, 0, 0));
         buttonSave.setText("Criar");
+        buttonSave.setBorderPainted(false);
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSaveActionPerformed(evt);
             }
         });
 
-        buttonEdit.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        buttonEdit.setBackground(new java.awt.Color(153, 153, 153));
+        buttonEdit.setFont(new java.awt.Font("NATS", 0, 16));
+        buttonEdit.setForeground(new java.awt.Color(0, 0, 0));
         buttonEdit.setText("Salvar");
+        buttonEdit.setBorderPainted(false);
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
             }
         });
 
-        buttorDelete.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        buttorDelete.setBackground(new java.awt.Color(153, 153, 153));
+        buttorDelete.setFont(new java.awt.Font("NATS", 0, 16));
+        buttorDelete.setForeground(new java.awt.Color(0, 0, 0));
         buttorDelete.setText("Excluir");
+        buttorDelete.setBorderPainted(false);
         buttorDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttorDeleteActionPerformed(evt);
@@ -438,8 +434,8 @@ public class PokemonForm extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(374, 374, 374)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,10 +443,11 @@ public class PokemonForm extends javax.swing.JFrame {
                 .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttorDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addGap(280, 280, 280))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(telaPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(telaPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
@@ -458,9 +455,9 @@ public class PokemonForm extends javax.swing.JFrame {
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(telaPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(telaPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonSave)
@@ -476,11 +473,11 @@ public class PokemonForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -512,12 +509,10 @@ public class PokemonForm extends javax.swing.JFrame {
         pokemon.setNome(txtNome.getText());
         pokemon.setTipo(txtTipo.getText());
         pokemon.setPontosCombate(Integer.parseInt(txtPontosCombate.getText()));
-        pokemon.setPossuiEvolucao(checkPossuiEvolucao.isSelected());
-        pokemon.setStatusBatalha(checkEmBatalha.isSelected());
-        pokemon.setPodeEvoluir(checkPodeEvoluir.isSelected());
+        pokemon.setLocalCaptura(txtLocalCaptura.getText());
         pokemon.setDataCaptura(txtDataCaptura.getText());
-        pokemon.setBatalhasVencidas(Integer.parseInt(txtBatalhasVencidas.getText()));
-        pokemon.setBatalhasPerdidas(Integer.parseInt(txtBatalhasPerdidas.getText()));
+        pokemon.setEvolucao(txtEvolucao.getText());
+        pokemon.setCpfTreinador(txtCpfTreinador.getText());
 
         PokemonDAO dao = new PokemonDAO();
         dao.alterar_pokemon(pokemon);
@@ -528,16 +523,14 @@ public class PokemonForm extends javax.swing.JFrame {
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         //botão de salvar
         Pokemon pokemon = new Pokemon();
-
+        
         pokemon.setNome(txtNome.getText());
         pokemon.setTipo(txtTipo.getText());
         pokemon.setPontosCombate(Integer.parseInt(txtPontosCombate.getText()));
-        pokemon.setPossuiEvolucao(checkPossuiEvolucao.isSelected());
-        pokemon.setStatusBatalha(false);
-        pokemon.setPodeEvoluir(false);
+        pokemon.setLocalCaptura(txtLocalCaptura.getText());
         pokemon.setDataCaptura(txtDataCaptura.getText());
-        pokemon.setBatalhasVencidas(0);
-        pokemon.setBatalhasPerdidas(0);
+        pokemon.setEvolucao(txtEvolucao.getText());
+        pokemon.setCpfTreinador(txtCpfTreinador.getText());
 
         PokemonDAO dao = new PokemonDAO();
         dao.cadastrar_pokemon(pokemon);
@@ -558,21 +551,11 @@ public class PokemonForm extends javax.swing.JFrame {
         txtNome.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 1).toString());
         txtTipo.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 2).toString());
         txtPontosCombate.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 3).toString());
-        txtDataCaptura.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 4).toString());
-        txtBatalhasVencidas.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 5).toString());
-        txtBatalhasPerdidas.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 6).toString());
-        if(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 7).toString() == "true")
-        checkPossuiEvolucao.setSelected(true);
-        else
-        checkPossuiEvolucao.setSelected(false);
-        if(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 8).toString() == "true")
-        checkPodeEvoluir.setSelected(true);
-        else
-        checkPodeEvoluir.setSelected(false);
-        if(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 9).toString() == "true")
-        checkEmBatalha.setSelected(true);
-        else
-        checkEmBatalha.setSelected(false);
+        txtLocalCaptura.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 4).toString());
+        txtDataCaptura.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 5).toString());
+        txtEvolucao.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 6).toString());
+        txtCpfTreinador.setText(tabelaPokemon.getValueAt(tabelaPokemon.getSelectedRow(), 7).toString());
+        
     }//GEN-LAST:event_tabelaPokemonMouseClicked
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
@@ -590,12 +573,10 @@ public class PokemonForm extends javax.swing.JFrame {
                 p.getNome(),
                 p.getTipo(),
                 p.getPontosCombate(),
+                p.getLocalCaptura(),
                 p.getDataCaptura(),
-                p.getBatalhasVencidas(),
-                p.getBatalhasPerdidas(),
-                p.getPossuiEvolucao(),
-                p.getPodeEvoluir(),
-                p.getStatusBatalha()
+                p.getEvolucao(),
+                p.getCpfTreinador()
             });
         }
 
@@ -617,12 +598,10 @@ public class PokemonForm extends javax.swing.JFrame {
                 p.getNome(),
                 p.getTipo(),
                 p.getPontosCombate(),
+                p.getLocalCaptura(),
                 p.getDataCaptura(),
-                p.getBatalhasVencidas(),
-                p.getBatalhasPerdidas(),
-                p.getPossuiEvolucao(),
-                p.getPodeEvoluir(),
-                p.getStatusBatalha()
+                p.getEvolucao(),
+                p.getCpfTreinador()
             });
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
@@ -631,29 +610,9 @@ public class PokemonForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
-    private void checkPossuiEvolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPossuiEvolucaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkPossuiEvolucaoActionPerformed
-
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
-    private void checkPodeEvoluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPodeEvoluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkPodeEvoluirActionPerformed
-
-    private void checkEmBatalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkEmBatalhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkEmBatalhaActionPerformed
-
-    private void txtBatalhasPerdidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasPerdidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBatalhasPerdidasActionPerformed
-
-    private void txtBatalhasVencidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBatalhasVencidasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBatalhasVencidasActionPerformed
 
     private void txtPontosCombateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPontosCombateActionPerformed
         // TODO add your handling code here:
@@ -671,6 +630,18 @@ public class PokemonForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
+    private void txtLocalCapturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalCapturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLocalCapturaActionPerformed
+
+    private void txtEvolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEvolucaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEvolucaoActionPerformed
+
+    private void txtCpfTreinadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfTreinadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfTreinadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -682,7 +653,7 @@ public class PokemonForm extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -715,25 +686,24 @@ public class PokemonForm extends javax.swing.JFrame {
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttorDelete;
-    private javax.swing.JCheckBox checkEmBatalha;
-    private javax.swing.JCheckBox checkPodeEvoluir;
-    private javax.swing.JCheckBox checkPossuiEvolucao;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaPokemon;
     private javax.swing.JTabbedPane telaPokemon;
-    private javax.swing.JTextField txtBatalhasPerdidas;
-    private javax.swing.JTextField txtBatalhasVencidas;
+    private javax.swing.JFormattedTextField txtCpfTreinador;
     private javax.swing.JFormattedTextField txtDataCaptura;
+    private javax.swing.JTextField txtEvolucao;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtLocalCaptura;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JTextField txtPontosCombate;

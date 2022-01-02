@@ -13,7 +13,7 @@ public class ConnectionFactory {
 
     public Connection getConnection(){
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bdpokedex", "grupo1", "123");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/pokedexTest", "tpBD", "123");
         }
         catch (Exception e){
             throw new RuntimeException(e);

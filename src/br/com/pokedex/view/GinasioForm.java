@@ -5,9 +5,10 @@
  */
 package br.com.pokedex.view;
 
-import br.com.pokedex.dao.TreinadorDAO;
+import br.com.pokedex.dao.GinasioDAO;
+import br.com.pokedex.model.Ginasio;
 import br.com.pokedex.model.PokedexUtil;
-import br.com.pokedex.model.Treinador;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,22 +21,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nanda
  */
-public class TreinadorForm extends javax.swing.JFrame {
+public class GinasioForm extends javax.swing.JFrame {
 
     // Metodo listar na tabela
-    public void listar_treinador() {
+    public void listar_ginasio() {
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.listar_treinadores();
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        GinasioDAO dao = new GinasioDAO();
+        List<Ginasio> ginasioList = dao.listar_ginasios();
+        DefaultTableModel dados = (DefaultTableModel) tabelaGinasio.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Ginasio g : ginasioList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                g.getNome(),
+                g.getTipo(),
+                g.getEndereco()
             });
         }
     }
@@ -43,7 +43,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     /**
      * Creates new form TreinadorForm
      */
-    public TreinadorForm() {
+    public GinasioForm() {
         initComponents();
     }
 
@@ -56,7 +56,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/TreinadorDir.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/GinasioDir.png"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -70,22 +70,19 @@ public class TreinadorForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JFormattedTextField();
-        boxRanking = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JTextField();
         abaPesquisa = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         buttonSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaTreinador = new javax.swing.JTable();
+        tabelaGinasio = new javax.swing.JTable();
         buttonNew = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
         buttonEdit = new javax.swing.JButton();
         buttorDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 544));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -128,32 +125,15 @@ public class TreinadorForm extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("CPF:");
+        jLabel13.setText("Tipo:");
 
-        txtCpf.setBackground(new java.awt.Color(255, 255, 255));
-        try {
-            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtCpf.setFont(new java.awt.Font("NATS", 0, 16));
-        txtCpf.addActionListener(new java.awt.event.ActionListener() {
+        txtTipo.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipo.setFont(new java.awt.Font("NATS", 0, 16));
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCpfActionPerformed(evt);
+                txtTipoActionPerformed(evt);
             }
         });
-
-        boxRanking.setFont(new java.awt.Font("NATS", 0, 16));
-        boxRanking.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integrante", "Líder" }));
-        boxRanking.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxRankingActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setFont(new java.awt.Font("NATS", 0, 16));
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Ranking:");
 
         javax.swing.GroupLayout abaCadastroLayout = new javax.swing.GroupLayout(abaCadastro);
         abaCadastro.setLayout(abaCadastroLayout);
@@ -163,24 +143,18 @@ public class TreinadorForm extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel13)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         abaCadastroLayout.setVerticalGroup(
             abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,16 +164,12 @@ public class TreinadorForm extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(boxRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         telaTreinadores.addTab("Dados cadastrais", abaCadastro);
@@ -234,32 +204,26 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        tabelaTreinador.setFont(new java.awt.Font("NATS", 0, 16));
-        tabelaTreinador.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaGinasio.setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaGinasio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "CPF", "Endereço", "Ranking"
+                "Nome", "Tipo", "Endereço"
             }
         ));
-        tabelaTreinador.setSelectionBackground(new java.awt.Color(117, 117, 117));
-        tabelaTreinador.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaGinasio.setSelectionBackground(new java.awt.Color(117, 117, 117));
+        tabelaGinasio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaTreinadorMouseClicked(evt);
+                tabelaGinasioMouseClicked(evt);
             }
         });
-        tabelaTreinador.getTableHeader().setFont(new java.awt.Font("NATS", 0, 16));
-        tabelaTreinador.getTableHeader().setPreferredSize(new Dimension(50, 30));
-        tabelaTreinador.getTableHeader().setBackground(new java.awt.Color(60,63,65));
-        jScrollPane1.setViewportView(tabelaTreinador);
-        if (tabelaTreinador.getColumnModel().getColumnCount() > 0) {
-            tabelaTreinador.getColumnModel().getColumn(0).setHeaderValue("Nome");
-            tabelaTreinador.getColumnModel().getColumn(1).setHeaderValue("CPF");
-            tabelaTreinador.getColumnModel().getColumn(2).setHeaderValue("Endereço");
-            tabelaTreinador.getColumnModel().getColumn(3).setHeaderValue("Ranking");
-        }
-        tabelaTreinador.getAccessibleContext().setAccessibleName("");
+        tabelaGinasio.getTableHeader().setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaGinasio.getTableHeader().setPreferredSize(new Dimension(50, 30));
+        tabelaGinasio.getTableHeader().setBackground(new java.awt.Color(60,63,65));
+        jScrollPane1.setViewportView(tabelaGinasio);
+        tabelaGinasio.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout abaPesquisaLayout = new javax.swing.GroupLayout(abaPesquisa);
         abaPesquisa.setLayout(abaPesquisaLayout);
@@ -401,7 +365,7 @@ public class TreinadorForm extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // Carrega a lista
-        listar_treinador();
+        listar_ginasio();
     }//GEN-LAST:event_formWindowActivated
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -421,17 +385,16 @@ public class TreinadorForm extends javax.swing.JFrame {
         //Pesquisar treinador por nome
         String nome = "%" + txtPesquisa.getText() + "%";
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        GinasioDAO dao = new GinasioDAO();
+        List<Ginasio> ginasioList = dao.buscar_ginasio_Nome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaGinasio.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Ginasio g : ginasioList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                g.getNome(),
+                g.getTipo(),
+                g.getEndereco()
             });
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
@@ -440,29 +403,27 @@ public class TreinadorForm extends javax.swing.JFrame {
         //Pesquisar treinador por nome
         String nome = "%" + txtPesquisa.getText() + "%";
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        GinasioDAO dao = new GinasioDAO();
+        List<Ginasio> ginasioList = dao.buscar_ginasio_Nome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaGinasio.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Ginasio g : ginasioList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                g.getNome(),
+                g.getTipo(),
+                g.getEndereco()
             });
         }
     }//GEN-LAST:event_buttonSearchActionPerformed
 
-    private void tabelaTreinadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTreinadorMouseClicked
+    private void tabelaGinasioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaGinasioMouseClicked
         // muda da aba de tabela de pesquisa para a aba de cadastro
         telaTreinadores.setSelectedIndex(0);
-        txtNome.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 0).toString());
-        txtCpf.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 1).toString());
-        txtEndereco.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 2).toString());
-        boxRanking.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 3).toString());
-    }//GEN-LAST:event_tabelaTreinadorMouseClicked
+        txtNome.setText(tabelaGinasio.getValueAt(tabelaGinasio.getSelectedRow(), 0).toString());
+        txtTipo.setText(tabelaGinasio.getValueAt(tabelaGinasio.getSelectedRow(), 1).toString());
+        txtEndereco.setText(tabelaGinasio.getValueAt(tabelaGinasio.getSelectedRow(), 2).toString());
+    }//GEN-LAST:event_tabelaGinasioMouseClicked
 
     private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
         //Botao novo
@@ -472,53 +433,48 @@ public class TreinadorForm extends javax.swing.JFrame {
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         //botão de salvar
-        Treinador treinador = new Treinador();
+        Ginasio ginasio = new Ginasio();
 
-        treinador.setNome(txtNome.getText());
-        treinador.setCpf(txtCpf.getText());
-        treinador.setEndereco(txtEndereco.getText());
-        treinador.setRanking(boxRanking.getSelectedItem().toString());
+        ginasio.setNome(txtNome.getText());
+        ginasio.setTipo(txtTipo.getText());
+        ginasio.setEndereco(txtEndereco.getText());
 
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.cadastrar_treinador(treinador);
+        GinasioDAO dao = new GinasioDAO();
+        dao.cadastrar_ginasio(ginasio);
 
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
         //botao de editar
-        Treinador treinador = new Treinador();
+        Ginasio ginasio = new Ginasio();
 
-        treinador.setNome(txtNome.getText());
-        treinador.setCpf(txtCpf.getText());
-        treinador.setEndereco(txtEndereco.getText());
-        treinador.setRanking(boxRanking.getSelectedItem().toString());
+        ginasio.setNome(txtNome.getText());
+        ginasio.setTipo(txtTipo.getText());
+        ginasio.setEndereco(txtEndereco.getText());
 
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.alterar_treinador(treinador);
+        GinasioDAO dao = new GinasioDAO();
+        dao.alterar_ginasio(ginasio);
 
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void buttorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttorDeleteActionPerformed
         //botao excluir
-        Treinador treinador = new Treinador();
+        Ginasio ginasio = new Ginasio();
 
-        treinador.setCpf(txtCpf.getText());
+        ginasio.setNome(txtNome.getText());
+        ginasio.setEndereco(txtEndereco.getText());
 
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.excluir_treinador(treinador);
+        GinasioDAO dao = new GinasioDAO();
+        dao.excluir_ginasio(ginasio);
 
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttorDeleteActionPerformed
 
-    private void boxRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxRankingActionPerformed
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxRankingActionPerformed
-
-    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCpfActionPerformed
+    }//GEN-LAST:event_txtTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -537,20 +493,21 @@ public class TreinadorForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GinasioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GinasioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GinasioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GinasioForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TreinadorForm().setVisible(true);
+                new GinasioForm().setVisible(true);
             }
         });
     }
@@ -558,7 +515,6 @@ public class TreinadorForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel abaCadastro;
     private javax.swing.JPanel abaPesquisa;
-    private javax.swing.JComboBox<String> boxRanking;
     private javax.swing.JButton buttonEdit;
     private javax.swing.JButton buttonNew;
     private javax.swing.JButton buttonSave;
@@ -566,16 +522,15 @@ public class TreinadorForm extends javax.swing.JFrame {
     private javax.swing.JButton buttorDelete;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelaTreinador;
+    private javax.swing.JTable tabelaGinasio;
     private javax.swing.JTabbedPane telaTreinadores;
-    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

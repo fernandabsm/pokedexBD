@@ -25,20 +25,18 @@ public class PokemonDAO {
 
     public void cadastrar_pokemon(Pokemon pokemon){
         try{
-            String sql = "insert into tb_pokemons(nome,tipo,status_batalha,data_captura,pontos_combate,pode_evoluir,possui_evolucao,batalhas_vencidas,batalhas_perdidas) " +
-                    "values(?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into pokemon(nome,tipo,pontos_combate,local_captura,data_captura,evolucao,Treinador_cpf) " +
+                    "values(?,?,?,?,?,?,?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, pokemon.getNome());
             statement.setString(2, pokemon.getTipo());
-            statement.setBoolean(3, pokemon.getStatusBatalha());
-            statement.setString(4, pokemon.getDataCaptura());
-            statement.setInt(5, pokemon.getPontosCombate());
-            statement.setBoolean(6, pokemon.getPodeEvoluir());
-            statement.setBoolean(7, pokemon.getPossuiEvolucao());
-            statement.setInt(8, pokemon.getBatalhasVencidas());
-            statement.setInt(9, pokemon.getBatalhasPerdidas());
+            statement.setInt(3, pokemon.getPontosCombate());
+            statement.setString(4, pokemon.getLocalCaptura());
+            statement.setString(5, pokemon.getDataCaptura());
+            statement.setString(6, pokemon.getEvolucao());
+            statement.setString(7, pokemon.getCpfTreinador());
 
             statement.execute();
             statement.close();
@@ -52,22 +50,19 @@ public class PokemonDAO {
     
     public void alterar_pokemon(Pokemon pokemon) {
         try {
-            String sql = "update tb_pokemons set nome=?,tipo=?,status_batalha=?,data_captura=?,"
-                    + "pontos_combate=?,pode_evoluir=?,possui_evolucao=?,batalhas_vencidas=?,"
-                    + "batalhas_perdidas=? where id=?";
+            String sql = "update pokemon set nome=?,tipo=?,pontos_combate=?,local_captura=?,data_captura=?,"
+                    + "evolucao=?,Treinador_cpf=? where idPokemon=?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, pokemon.getNome());
             statement.setString(2, pokemon.getTipo());
-            statement.setBoolean(3, pokemon.getStatusBatalha());
-            statement.setString(4, pokemon.getDataCaptura());
-            statement.setInt(5, pokemon.getPontosCombate());
-            statement.setBoolean(6, pokemon.getPodeEvoluir());
-            statement.setBoolean(7, pokemon.getPossuiEvolucao());
-            statement.setInt(8, pokemon.getBatalhasVencidas());
-            statement.setInt(9, pokemon.getBatalhasPerdidas());
-            statement.setInt(10, pokemon.getId());
+            statement.setInt(3, pokemon.getPontosCombate());
+            statement.setString(4, pokemon.getLocalCaptura());
+            statement.setString(5, pokemon.getDataCaptura());
+            statement.setString(6, pokemon.getEvolucao());
+            statement.setString(7, pokemon.getCpfTreinador());
+            statement.setInt(8, pokemon.getId());
 
             statement.execute();
             statement.close();
@@ -80,7 +75,7 @@ public class PokemonDAO {
 
     public void excluir_pokemon(Pokemon pokemon) {
         try {
-            String sql = "delete from tb_pokemons where id = ?";
+            String sql = "delete from pokemon where idPokemon = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -99,23 +94,21 @@ public class PokemonDAO {
         try {
             List<Pokemon> pokemonList = new ArrayList<>();
 
-            String sql = "select * from tb_pokemons";
+            String sql = "select * from pokemon";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
                 Pokemon pokemon = new Pokemon();
 
-                pokemon.setId(rs.getInt("id"));
+                pokemon.setId(rs.getInt("idPokemon"));
                 pokemon.setNome(rs.getString("nome"));
                 pokemon.setTipo(rs.getString("tipo"));
                 pokemon.setPontosCombate(rs.getInt("pontos_combate"));
+                pokemon.setLocalCaptura(rs.getString("local_captura"));
                 pokemon.setDataCaptura(rs.getString("data_captura"));
-                pokemon.setPossuiEvolucao(rs.getBoolean("possui_evolucao"));
-                pokemon.setPodeEvoluir(rs.getBoolean("pode_evoluir"));
-                pokemon.setBatalhasVencidas(rs.getInt("batalhas_vencidas"));
-                pokemon.setBatalhasPerdidas(rs.getInt("batalhas_perdidas"));
-                pokemon.setStatusBatalha(rs.getBoolean("status_batalha"));
+                pokemon.setEvolucao(rs.getString("evolucao"));
+                pokemon.setCpfTreinador(rs.getString("Treinador_cpf"));
                 
                 pokemonList.add(pokemon);
             }
@@ -130,7 +123,7 @@ public class PokemonDAO {
         try {
             List<Pokemon> pokemonList = new ArrayList<>();
 
-            String sql = "select * from tb_pokemons where nome like ?";
+            String sql = "select * from pokemon where nome like ?";
             
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nome);
@@ -140,16 +133,14 @@ public class PokemonDAO {
             while (rs.next()) {
                 Pokemon pokemon = new Pokemon();
 
-                pokemon.setId(rs.getInt("id"));
+                pokemon.setId(rs.getInt("idPokemon"));
                 pokemon.setNome(rs.getString("nome"));
                 pokemon.setTipo(rs.getString("tipo"));
                 pokemon.setPontosCombate(rs.getInt("pontos_combate"));
+                pokemon.setLocalCaptura(rs.getString("local_captura"));
                 pokemon.setDataCaptura(rs.getString("data_captura"));
-                pokemon.setPossuiEvolucao(rs.getBoolean("possui_evolucao"));
-                pokemon.setPodeEvoluir(rs.getBoolean("pode_evoluir"));
-                pokemon.setBatalhasVencidas(rs.getInt("batalhas_vencidas"));
-                pokemon.setBatalhasPerdidas(rs.getInt("batalhas_perdidas"));
-                pokemon.setStatusBatalha(rs.getBoolean("status_batalha"));
+                pokemon.setEvolucao(rs.getString("evolucao"));
+                pokemon.setCpfTreinador(rs.getString("Treinador_cpf"));
                 
                 pokemonList.add(pokemon);
             }

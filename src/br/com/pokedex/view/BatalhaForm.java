@@ -5,9 +5,11 @@
  */
 package br.com.pokedex.view;
 
-import br.com.pokedex.dao.TreinadorDAO;
+
+import br.com.pokedex.dao.BatalhaDAO;
+import br.com.pokedex.model.Batalha;
 import br.com.pokedex.model.PokedexUtil;
-import br.com.pokedex.model.Treinador;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,22 +22,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nanda
  */
-public class TreinadorForm extends javax.swing.JFrame {
+public class BatalhaForm extends javax.swing.JFrame {
 
     // Metodo listar na tabela
     public void listar_treinador() {
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.listar_treinadores();
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        BatalhaDAO dao = new BatalhaDAO();
+        List<Batalha> batalhaList = dao.listar_batalhas();
+        DefaultTableModel dados = (DefaultTableModel) tabelaBatalha.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Batalha b : batalhaList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                b.getEnderecoGinasio(),
+                b.getCpfTreinador(),
+                b.getAdversario(),
+                b.getStatus(),
+                b.getVencedor()
             });
         }
     }
@@ -43,7 +46,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     /**
      * Creates new form TreinadorForm
      */
-    public TreinadorForm() {
+    public BatalhaForm() {
         initComponents();
     }
 
@@ -56,7 +59,7 @@ public class TreinadorForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/TreinadorDir.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/BatalhaDir.png"));
         Image image = icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -66,26 +69,26 @@ public class TreinadorForm extends javax.swing.JFrame {
         telaTreinadores = new javax.swing.JTabbedPane();
         abaCadastro = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtAdversario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
-        boxRanking = new javax.swing.JComboBox<>();
+        boxStatus = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtVencedor = new javax.swing.JTextField();
         abaPesquisa = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         buttonSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaTreinador = new javax.swing.JTable();
+        tabelaBatalha = new javax.swing.JTable();
         buttonNew = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
         buttonEdit = new javax.swing.JButton();
-        buttorDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 544));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -104,13 +107,13 @@ public class TreinadorForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Adversário:");
 
-        txtNome.setBackground(new java.awt.Color(255, 255, 255));
-        txtNome.setFont(new java.awt.Font("NATS", 0, 16));
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtAdversario.setBackground(new java.awt.Color(255, 255, 255));
+        txtAdversario.setFont(new java.awt.Font("NATS", 0, 16));
+        txtAdversario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtAdversarioActionPerformed(evt);
             }
         });
 
@@ -128,7 +131,7 @@ public class TreinadorForm extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("CPF:");
+        jLabel13.setText("CPF Treinador:");
 
         txtCpf.setBackground(new java.awt.Color(255, 255, 255));
         try {
@@ -143,63 +146,83 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        boxRanking.setFont(new java.awt.Font("NATS", 0, 16));
-        boxRanking.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Integrante", "Líder" }));
-        boxRanking.addActionListener(new java.awt.event.ActionListener() {
+        boxStatus.setFont(new java.awt.Font("NATS", 0, 16));
+        boxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em andamento", "Cancelada", "Concluída" }));
+        boxStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxRankingActionPerformed(evt);
+                boxStatusActionPerformed(evt);
             }
         });
 
         jLabel16.setFont(new java.awt.Font("NATS", 0, 16));
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Ranking:");
+        jLabel16.setText("Status:");
+
+        jLabel4.setFont(new java.awt.Font("NATS", 0, 16));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Vencedor:");
+
+        txtVencedor.setBackground(new java.awt.Color(255, 255, 255));
+        txtVencedor.setFont(new java.awt.Font("NATS", 0, 16));
+        txtVencedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVencedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout abaCadastroLayout = new javax.swing.GroupLayout(abaCadastro);
         abaCadastro.setLayout(abaCadastroLayout);
         abaCadastroLayout.setHorizontalGroup(
             abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaCadastroLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(abaCadastroLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, abaCadastroLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(abaCadastroLayout.createSequentialGroup()
-                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(abaCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel13)))
+                        .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                            .addComponent(txtAdversario))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(abaCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVencedor, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         abaCadastroLayout.setVerticalGroup(
             abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaCadastroLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(16, 16, 16)
+                .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(abaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(boxRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(boxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtVencedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         telaTreinadores.addTab("Dados cadastrais", abaCadastro);
@@ -234,32 +257,26 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        tabelaTreinador.setFont(new java.awt.Font("NATS", 0, 16));
-        tabelaTreinador.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaBatalha.setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaBatalha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "CPF", "Endereço", "Ranking"
+                "Endereço", "Treinador", "Adversário", "Status", "Vencedor"
             }
         ));
-        tabelaTreinador.setSelectionBackground(new java.awt.Color(117, 117, 117));
-        tabelaTreinador.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaBatalha.setSelectionBackground(new java.awt.Color(117, 117, 117));
+        tabelaBatalha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaTreinadorMouseClicked(evt);
+                tabelaBatalhaMouseClicked(evt);
             }
         });
-        tabelaTreinador.getTableHeader().setFont(new java.awt.Font("NATS", 0, 16));
-        tabelaTreinador.getTableHeader().setPreferredSize(new Dimension(50, 30));
-        tabelaTreinador.getTableHeader().setBackground(new java.awt.Color(60,63,65));
-        jScrollPane1.setViewportView(tabelaTreinador);
-        if (tabelaTreinador.getColumnModel().getColumnCount() > 0) {
-            tabelaTreinador.getColumnModel().getColumn(0).setHeaderValue("Nome");
-            tabelaTreinador.getColumnModel().getColumn(1).setHeaderValue("CPF");
-            tabelaTreinador.getColumnModel().getColumn(2).setHeaderValue("Endereço");
-            tabelaTreinador.getColumnModel().getColumn(3).setHeaderValue("Ranking");
-        }
-        tabelaTreinador.getAccessibleContext().setAccessibleName("");
+        tabelaBatalha.getTableHeader().setFont(new java.awt.Font("NATS", 0, 16));
+        tabelaBatalha.getTableHeader().setPreferredSize(new Dimension(50, 30));
+        tabelaBatalha.getTableHeader().setBackground(new java.awt.Color(60,63,65));
+        jScrollPane1.setViewportView(tabelaBatalha);
+        tabelaBatalha.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout abaPesquisaLayout = new javax.swing.GroupLayout(abaPesquisa);
         abaPesquisa.setLayout(abaPesquisaLayout);
@@ -325,45 +342,30 @@ public class TreinadorForm extends javax.swing.JFrame {
             }
         });
 
-        buttorDelete.setBackground(new java.awt.Color(153, 153, 153));
-        buttorDelete.setFont(new java.awt.Font("NATS", 0, 16));
-        buttorDelete.setForeground(new java.awt.Color(0, 0, 0));
-        buttorDelete.setText("Excluir");
-        buttorDelete.setBorderPainted(false);
-        buttorDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttorDeleteActionPerformed(evt);
-            }
-        });
-
         jDesktopPane1.setLayer(telaTreinadores, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(buttonNew, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(buttonSave, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(buttonEdit, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(buttorDelete, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(telaTreinadores, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttorDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(telaTreinadores, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(331, 331, 331))
         );
 
-        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave});
 
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,13 +376,12 @@ public class TreinadorForm extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonSave)
-                        .addComponent(buttonEdit)
-                        .addComponent(buttorDelete))
+                        .addComponent(buttonEdit))
                     .addComponent(buttonNew, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83))
         );
 
-        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave, buttorDelete});
+        jDesktopPane1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonEdit, buttonNew, buttonSave});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -404,9 +405,9 @@ public class TreinadorForm extends javax.swing.JFrame {
         listar_treinador();
     }//GEN-LAST:event_formWindowActivated
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+    private void txtAdversarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdversarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_txtAdversarioActionPerformed
 
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
@@ -421,48 +422,51 @@ public class TreinadorForm extends javax.swing.JFrame {
         //Pesquisar treinador por nome
         String nome = "%" + txtPesquisa.getText() + "%";
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        BatalhaDAO dao = new BatalhaDAO();
+        List<Batalha> batalhaList = dao.buscar_batalha_Treinador(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaBatalha.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Batalha b : batalhaList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                b.getEnderecoGinasio(),
+                b.getCpfTreinador(),
+                b.getAdversario(),
+                b.getStatus(),
+                b.getVencedor()
             });
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         //Pesquisar treinador por nome
-        String nome = "%" + txtPesquisa.getText() + "%";
+        String cpf = "%" + txtPesquisa.getText() + "%";
 
-        TreinadorDAO dao = new TreinadorDAO();
-        List<Treinador> treinadorList = dao.buscar_treinador_Nome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaTreinador.getModel();
+        BatalhaDAO dao = new BatalhaDAO();
+        List<Batalha> batalhaList = dao.buscar_batalha_Treinador(cpf);
+        DefaultTableModel dados = (DefaultTableModel) tabelaBatalha.getModel();
         dados.setNumRows(0);
 
-        for (Treinador t : treinadorList) {
+        for (Batalha b : batalhaList) {
             dados.addRow(new Object[]{
-                t.getNome(),
-                t.getCpf(),
-                t.getEndereco(),
-                t.getRanking()
+                b.getEnderecoGinasio(),
+                b.getCpfTreinador(),
+                b.getAdversario(),
+                b.getStatus(),
+                b.getVencedor()
             });
         }
     }//GEN-LAST:event_buttonSearchActionPerformed
 
-    private void tabelaTreinadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTreinadorMouseClicked
+    private void tabelaBatalhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaBatalhaMouseClicked
         // muda da aba de tabela de pesquisa para a aba de cadastro
         telaTreinadores.setSelectedIndex(0);
-        txtNome.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 0).toString());
-        txtCpf.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 1).toString());
-        txtEndereco.setText(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 2).toString());
-        boxRanking.setSelectedItem(tabelaTreinador.getValueAt(tabelaTreinador.getSelectedRow(), 3).toString());
-    }//GEN-LAST:event_tabelaTreinadorMouseClicked
+        txtAdversario.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 0).toString());
+        txtCpf.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 1).toString());
+        txtEndereco.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 2).toString());
+        boxStatus.setSelectedItem(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 3).toString());
+        txtVencedor.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tabelaBatalhaMouseClicked
 
     private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
         //Botao novo
@@ -472,53 +476,47 @@ public class TreinadorForm extends javax.swing.JFrame {
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         //botão de salvar
-        Treinador treinador = new Treinador();
+        Batalha batalha = new Batalha();
 
-        treinador.setNome(txtNome.getText());
-        treinador.setCpf(txtCpf.getText());
-        treinador.setEndereco(txtEndereco.getText());
-        treinador.setRanking(boxRanking.getSelectedItem().toString());
+        batalha.setEnderecoGinasio(txtEndereco.getText());
+        batalha.setCpfTreinador(txtCpf.getText());
+        batalha.setAdversario(txtAdversario.getText());
+        batalha.setStatus(boxStatus.getSelectedItem().toString());
+        batalha.setVencedor(txtVencedor.getText());
 
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.cadastrar_treinador(treinador);
+        BatalhaDAO dao = new BatalhaDAO();
+        dao.cadastrar_batalha(batalha);
 
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
         //botao de editar
-        Treinador treinador = new Treinador();
+        Batalha batalha = new Batalha();
 
-        treinador.setNome(txtNome.getText());
-        treinador.setCpf(txtCpf.getText());
-        treinador.setEndereco(txtEndereco.getText());
-        treinador.setRanking(boxRanking.getSelectedItem().toString());
+        batalha.setEnderecoGinasio(txtEndereco.getText());
+        batalha.setCpfTreinador(txtCpf.getText());
+        batalha.setAdversario(txtAdversario.getText());
+        batalha.setStatus(boxStatus.getSelectedItem().toString());
+        batalha.setVencedor(txtVencedor.getText());
 
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.alterar_treinador(treinador);
+        BatalhaDAO dao = new BatalhaDAO();
+        dao.alterar_batalha(batalha);
 
         new PokedexUtil().limpa_dados(abaCadastro);
     }//GEN-LAST:event_buttonEditActionPerformed
 
-    private void buttorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttorDeleteActionPerformed
-        //botao excluir
-        Treinador treinador = new Treinador();
-
-        treinador.setCpf(txtCpf.getText());
-
-        TreinadorDAO dao = new TreinadorDAO();
-        dao.excluir_treinador(treinador);
-
-        new PokedexUtil().limpa_dados(abaCadastro);
-    }//GEN-LAST:event_buttorDeleteActionPerformed
-
-    private void boxRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxRankingActionPerformed
+    private void boxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxRankingActionPerformed
+    }//GEN-LAST:event_boxStatusActionPerformed
 
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtVencedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVencedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVencedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -537,20 +535,21 @@ public class TreinadorForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BatalhaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BatalhaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BatalhaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TreinadorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BatalhaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TreinadorForm().setVisible(true);
+                new BatalhaForm().setVisible(true);
             }
         });
     }
@@ -558,24 +557,25 @@ public class TreinadorForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel abaCadastro;
     private javax.swing.JPanel abaPesquisa;
-    private javax.swing.JComboBox<String> boxRanking;
+    private javax.swing.JComboBox<String> boxStatus;
     private javax.swing.JButton buttonEdit;
     private javax.swing.JButton buttonNew;
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSearch;
-    private javax.swing.JButton buttorDelete;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelaTreinador;
+    private javax.swing.JTable tabelaBatalha;
     private javax.swing.JTabbedPane telaTreinadores;
+    private javax.swing.JTextField txtAdversario;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
+    private javax.swing.JTextField txtVencedor;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,12 +44,15 @@ public class MenuForm extends javax.swing.JFrame {
         MenuAcessoPokemons = new javax.swing.JMenuItem();
         MenuTreinadores = new javax.swing.JMenu();
         MenuAcessoTreinadores = new javax.swing.JMenuItem();
+        MenuGinasios = new javax.swing.JMenu();
+        MenuAcessoGinasios = new javax.swing.JMenuItem();
+        MenuBatalhas = new javax.swing.JMenu();
+        MenuAcessoBatalhas = new javax.swing.JMenuItem();
         MenuMudarUsuario = new javax.swing.JMenu();
         MenuTrocarUsuario = new javax.swing.JMenuItem();
         MenuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(730, 594));
         setResizable(false);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -96,6 +99,36 @@ public class MenuForm extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuTreinadores);
 
+        MenuGinasios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaAjustado.png"))); // NOI18N
+        MenuGinasios.setText("Ginásios");
+        MenuGinasios.setFont(new java.awt.Font("NATS", 0, 18));
+
+        MenuAcessoGinasios.setFont(new java.awt.Font("NATS", 0, 16));
+        MenuAcessoGinasios.setText("Acesso aos Ginásios");
+        MenuAcessoGinasios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAcessoGinasiosActionPerformed(evt);
+            }
+        });
+        MenuGinasios.add(MenuAcessoGinasios);
+
+        jMenuBar1.add(MenuGinasios);
+
+        MenuBatalhas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/batalhaAjustado.png"))); // NOI18N
+        MenuBatalhas.setText("Batalhas");
+        MenuBatalhas.setFont(new java.awt.Font("NATS", 0, 18));
+
+        MenuAcessoBatalhas.setFont(new java.awt.Font("NATS", 0, 16));
+        MenuAcessoBatalhas.setText("Acesso às Batalhas");
+        MenuAcessoBatalhas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAcessoBatalhasActionPerformed(evt);
+            }
+        });
+        MenuBatalhas.add(MenuAcessoBatalhas);
+
+        jMenuBar1.add(MenuBatalhas);
+
         MenuMudarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configuracaoAjustado.png"))); // NOI18N
         MenuMudarUsuario.setText("Configurações");
         MenuMudarUsuario.setFont(new java.awt.Font("NATS", 0, 18));
@@ -127,9 +160,7 @@ public class MenuForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 80, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,6 +201,18 @@ public class MenuForm extends javax.swing.JFrame {
         menuTreinadores.setVisible(true);
     }//GEN-LAST:event_MenuAcessoTreinadoresActionPerformed
 
+    private void MenuAcessoGinasiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAcessoGinasiosActionPerformed
+        // TODO add your handling code here:
+        GinasioForm menuGinasios = new GinasioForm();
+        menuGinasios.setVisible(true);
+    }//GEN-LAST:event_MenuAcessoGinasiosActionPerformed
+
+    private void MenuAcessoBatalhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAcessoBatalhasActionPerformed
+        // TODO add your handling code here:
+        BatalhaForm menuBatalha = new BatalhaForm();
+        menuBatalha.setVisible(true);
+    }//GEN-LAST:event_MenuAcessoBatalhasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,7 +224,7 @@ public class MenuForm extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -206,8 +249,12 @@ public class MenuForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuAcessoBatalhas;
+    private javax.swing.JMenuItem MenuAcessoGinasios;
     private javax.swing.JMenuItem MenuAcessoPokemons;
     private javax.swing.JMenuItem MenuAcessoTreinadores;
+    public javax.swing.JMenu MenuBatalhas;
+    public javax.swing.JMenu MenuGinasios;
     private javax.swing.JMenu MenuMudarUsuario;
     public javax.swing.JMenu MenuPokemons;
     private javax.swing.JMenu MenuSair;
