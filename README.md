@@ -55,9 +55,9 @@ Pacote que contém os objetos do sistema. Os dados que são recebidos através d
 📁 br.com.pokedex.dao <br> <br>
 Pacote que recebe os objetos criados e encapsulados no pacote model e interage com o banco de dados, ou seja, é nesse pacote que serão criados os comandos SQL, bem como serão implementados os métodos que executam esses comandos. A sigla DAO vem de <i>Data Access Object</i>. Possui as classes:
 - PokemonDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Pokémons, interagindo com a tabela pokemon do BD.
-- TreinadorDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Treinadores, interagindo com a tabela treinador do BD.<br> <br>
-- GinasioDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Ginásios, interagindo com a tabela ginasio do BD.<br> <br>
-- BatalhaDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso das Batalhas, interagindo com a tabela batalha do BD.<br> <br>
+- TreinadorDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Treinadores, interagindo com a tabela treinador do BD.
+- GinasioDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso dos Ginásios, interagindo com a tabela ginasio do BD.
+- BatalhaDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso das Batalhas, interagindo com a tabela batalha do BD.
 - LoginDAO -> Implementa os métodos que executam as ações que foram citadas na descrição do pacote br.com.pokedex.view para o caso do Login, interagindo com a tabela batalha do BD.<br> <br>
 
 📁 br.com.pokedex.jdbc <br> <br>
