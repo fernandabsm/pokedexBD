@@ -74,7 +74,7 @@ Este pacote é um pacote extra dos demais e não segue o mesmo padrão pois sua 
 ✔️ Execute o script <a target="_blank" href="https://github.com/fernandabsm/pokedexScriptSQL">PokedexScript</a>. <br>
 ✔️ Instale a fonte <a target="_blank" href="https://pt.ffonts.net/NATS.font.download">NATS</a> no seu SO. <br>
 ✔️ Clone este repositório na sua máquina. <br>
-✔️ Crie um primeiro usuário com acesso "Líder" executando a classe <b>TreinadorForm</b>.<br>
+✔️ Crie um primeiro usuário com ranking "Líder" executando a classe <b>TreinadorForm</b>.<br>
 ✔️ Execute o projeto a partir da classe <b>LoginForm</b>.<br>
 
 Tendo testado pela IDE, você já está pronto para criar o arquivo executável. 🥳
