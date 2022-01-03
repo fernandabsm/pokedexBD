@@ -46,6 +46,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 600));
+        setResizable(false);
 
         jDesktopPane1.setAlignmentX(0.0F);
         jDesktopPane1.setAlignmentY(0.0F);
