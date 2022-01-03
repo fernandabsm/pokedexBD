@@ -461,9 +461,9 @@ public class BatalhaForm extends javax.swing.JFrame {
     private void tabelaBatalhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaBatalhaMouseClicked
         // muda da aba de tabela de pesquisa para a aba de cadastro
         telaTreinadores.setSelectedIndex(0);
-        txtAdversario.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 0).toString());
+        txtEndereco.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 0).toString());
         txtCpf.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 1).toString());
-        txtEndereco.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 2).toString());
+        txtAdversario.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 2).toString());
         boxStatus.setSelectedItem(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 3).toString());
         txtVencedor.setText(tabelaBatalha.getValueAt(tabelaBatalha.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_tabelaBatalhaMouseClicked
